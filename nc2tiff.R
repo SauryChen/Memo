@@ -1,3 +1,7 @@
+###########################
+## This is a code to create netCDF file into tiff file using R language.
+###########################
+
 ## Packages, also need to install gdal
 library(raster)
 library(rasterVis)
