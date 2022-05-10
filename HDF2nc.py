@@ -46,7 +46,7 @@ def write_nc(data, count):
 
     f_w.close()
 
-def basemap_plot_txt(data):
+def basemap_plot(data, title_name):
     data = np.flip(data, 0)
     theLats = np.arange(-49.875,50,0.25)
     theLons = np.arange(-179.875,180,0.25)
@@ -67,31 +67,7 @@ def basemap_plot_txt(data):
 
     cbar = m.colorbar(cs,location='right',pad="5%")
     cbar.set_label('mm/h')
-    plt.savefig('mean_txt.png',dpi=300)
-
-def basemap_plot_nc(data):
-    data = np.flip(data, 0)
-    theLats = np.arange(-49.875,50,0.25)
-    theLons = np.arange(-179.875,180,0.25)
-    fig = plt.figure(dpi = 300)
-    latcorners = ([-50, 50])
-    loncorners = ([-180, 180])
-    m = Basemap(projection='cyl', llcrnrlat=latcorners[0],urcrnrlat=latcorners[1],llcrnrlon=loncorners[0],urcrnrlon=loncorners[1])
-    m.drawcoastlines()
-    m.drawstates()
-    m.drawcountries()
-    clevs = np.arange(0,5.01,0.5)
-    x, y = np.float32(np.meshgrid(theLons, theLats))
-    cs = m.contourf(x,y,data,clevs,cmap=cm.GMT_drywet,latlon=True)
-    parallels = np.arange(-50.,51,25.)
-    m.drawparallels(parallels,labels=[True,False,True,False])
-    meridians = np.arange(-180.,180.,60.)
-    m.drawmeridians(meridians,labels=[False,False,False,True])
-
-    cbar = m.colorbar(cs,location='right',pad="5%")
-    cbar.set_label('mm/h')
-    plt.savefig('mean_nc.png',dpi=300)
-
+    plt.savefig(title_name,dpi=300)
 
 years = [2015, 2016, 2017, 2018, 2019]
 months = [6, 7, 8]
@@ -137,7 +113,7 @@ write_nc(precipitation, count)
 print("write_nc DONE.")
 
 prec_mean = np.nanmean(precipitation, axis = 0)
-basemap_plot_txt(prec_mean)
+basemap_plot(prec_mean, 'mean_txt.png')
 
 
 filename = 'precipitation.nc'
@@ -146,4 +122,4 @@ pre_data = f['precipitation'][:][:][:]
 p = np.array(pre_data)
 print(p.shape)
 p_nc_mean = np.nanmean(precipitation, axis = 0)
-basemap_plot_nc(p_nc_mean)
+basemap_plot_nc(p_nc_mean, 'mean_nc.png')
