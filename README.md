@@ -1,5 +1,5 @@
 # Memo
-## trmm2nc.py
+## HDF2nc.py
 [TRMM](https://gpm.nasa.gov/missions/trmm) was a research satellite in operation from 1997 to 2015. By covering the tropical and sub-tropical regions of the Earth, TRMM provided much needed information on rainfall and its associated heat release that helps to power the global atmospheric circulation that shapes both weather and climate.
 
 Below use **TRMM Rainfall Estimate L3 3 hour 0.25 degree x 0.25 degree V7 (TRMM_3B42)** dataset as an example.
