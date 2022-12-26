@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source_dir="/data1/zjp/MODIS/MOD13Q1"
+source_dir="/data1/usr/MODIS/MOD13Q1"
 source_list=`ls $source_dir`
 save_dir="/data1/usr/MODIS/data"
 st_year=2014
