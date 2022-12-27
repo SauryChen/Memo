@@ -24,9 +24,9 @@ do
 	echo "\033[36mCreating shapefile for reprojection Tiff\033[0m"
 	gdaltindex $shpfile $dst_file
 	
-	# step 3 Clipping TanDEM
+	# step 3 Clipping TanDEM + resolution change
 	echo "\033[36mClipping TanDEM\033[0m"
-	gdalwarp -dstnodata -999 -cutline $shpfile -crop_to_cutline $dem_file $dem_dst
+	gdalwarp -tr 40 40 -dstnodata -999 -cutline $shpfile -crop_to_cutline $dem_file $dem_dst
 	
 	# Start processing ADD shapefile
 	echo "\033[45;37mADD...\033[0m"
